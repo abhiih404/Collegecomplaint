@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complaint System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h2>Welcome, <span id="userName"></span></h2>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <main>
+    <section class="card">
+      <h3>Submit a Complaint</h3>
+      <form id="complaintForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="department" placeholder="Department" required>
+        <input type="text" id="title" placeholder="Issue Title" required>
+        <textarea id="description" placeholder="Describe your issue..." required></textarea>
+        <button type="submit">Submit Complaint</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h3>Submitted Complaints</h3>
+      <table id="complaintsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    const user = localStorage.getItem("loggedInUser");
+    if (!user) {
+      alert("Please login first!");
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("userName").innerText = user;
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
