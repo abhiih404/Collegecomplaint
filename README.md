@@ -2,8 +2,8 @@
 A simple web-based **College Complaint Registration System** that allows students to submit complaints, view submitted issues, and track their status as *Pending* or *Resolved*.
 
 ## 🚀 Features
-✅ Login Page (with background image)  
-✅ Complaint Submission Form (Name, Department, Issue Title, Description)  
+✅ Login Page 
+✅ Complaint Submission Form   
 ✅ View All Submitted Complaints in a Table  
 ✅ Toggle Complaint Status — *Resolved* / *Pending*  
 ✅ Data Stored Locally using `LocalStorage`  
