@@ -7,7 +7,7 @@ A simple web-based **College Complaint Registration System** that allows student
 ✅ View All Submitted Complaints in a Table  
 ✅ Toggle Complaint Status — *Resolved* / *Pending*  
 ✅ Data Stored Locally using `LocalStorage`  
-✅ Ready for Replit or GitHub Pages deployment  
+ 
 
 ## 🧠 How It Works
 1. **Login Page** — Enter your name/password and log in.  
