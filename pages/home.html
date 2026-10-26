@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Complaint System</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -43,19 +43,19 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="../js/script.js"></script>
   <script>
     const user = localStorage.getItem("loggedInUser");
     if (!user) {
       alert("Please login first!");
-      window.location.href = "index.html";
+      window.location.href = "../index.html";
     } else {
       document.getElementById("userName").innerText = user;
     }
 
     document.getElementById("logoutBtn").addEventListener("click", () => {
       localStorage.removeItem("loggedInUser");
-      window.location.href = "index.html";
+      window.location.href = "../index.html";
     });
   </script>
 </body>
