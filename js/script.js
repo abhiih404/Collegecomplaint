@@ -5,10 +5,11 @@ function loadComplaints() {
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
   tableBody.innerHTML = "";
 
-  complaints.forEach((c, index) => {
+  complaints.forEach((c) => {
     const row = document.createElement("tr");
 
-    [c.name, c.department, c.title, c.description, c.status].forEach((text) => {
+    [c.name, c.department, c.title, c.description, c.status, c.createdAt || "-"].forEach((text) => {      
+      // || "-" this is inorder to handle oder saved complaints without any date
       const cell = document.createElement("td");
       cell.textContent = text;
       row.appendChild(cell);
@@ -17,8 +18,12 @@ function loadComplaints() {
     const actionCell = document.createElement("td");
     const toggleBtn = document.createElement("button");
     toggleBtn.textContent = "Toggle";
-    toggleBtn.addEventListener("click", () => toggleStatus(index));
+    toggleBtn.addEventListener("click", () => toggleStatus(c.id));
     actionCell.appendChild(toggleBtn);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", () => deleteComplaint(c.id));
+    actionCell.appendChild(deleteBtn);
     row.appendChild(actionCell);
 
     tableBody.appendChild(row);
@@ -49,11 +54,13 @@ form.addEventListener("submit", (e) => {
   formError.textContent = "";
 
   const complaint ={
+    id: Date.now(),
     name,
     department,
     title,
     description,
     status: "Pending",
+    createdAt: new Date().toLocaleString(),
   };
 
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
@@ -64,18 +71,20 @@ form.addEventListener("submit", (e) => {
   loadComplaints();
 })
 
-function toggleStatus(index) {
+function toggleStatus(id) {
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-  complaints[index].status = complaints[index].status === "Pending" ? "Resolved" : "Pending";
+  const complaint = complaints.find((c) => c.id === id);
+  if (!complaint) return;
+  complaint.status = complaint.status === "Pending" ? "Resolved" : "Pending";
   localStorage.setItem("complaints", JSON.stringify(complaints));
   loadComplaints();
 }
 
-function deleteComplaint(index) {
+function deleteComplaint(id) {
   if (!confirm("Delete this complaint?")) return;
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-  complaints.splice(index, 1);
-  localStorage.setItem("complaints", JSON.stringify(complaints));
+  const updated = complaints.filter((c) => c.id !== id );
+  localStorage.setItem("complaints", JSON.stringify(updated));
   loadComplaints();
 }
 
