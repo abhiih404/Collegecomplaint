@@ -71,4 +71,12 @@ function toggleStatus(index) {
   loadComplaints();
 }
 
+function deleteComplaint(index) {
+  if (!confirm("Delete this complaint?")) return;
+  const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+  complaints.splice(index, 1);
+  localStorage.setItem("complaints", JSON.stringify(complaints));
+  loadComplaints();
+}
+
 window.onload = loadComplaints;
