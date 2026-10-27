@@ -25,23 +25,44 @@ function loadComplaints() {
   });
 }
 
+
+const formError = document.getElementById("formError");
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const complaint = {
-    name: form.name.value,
-    department: form.department.value,
-    title: form.title.value,
-    description: form.description.value,
+
+  const name = form.name.value.trim();
+  const department = form.department.value.trim();
+  const title = form.title.value.trim();
+  const description = form.description.value.trim();
+
+  if(!name || !department || !title || !description) {
+    formError.textContent = "Please fill in all fields.";
+    return;
+  }
+
+  if (description.length <10){
+    formError.textContent = "Description must be at least 10 characters.";
+    return;
+  }
+
+  formError.textContent = "";
+
+  const complaint ={
+    name,
+    department,
+    title,
+    description,
     status: "Pending",
   };
 
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
   complaints.push(complaint);
-  localStorage.setItem("complaints", JSON.stringify(complaints));
+  localStorage.setItem("complaints",JSON.stringify(complaints));
 
   form.reset();
   loadComplaints();
-});
+})
 
 function toggleStatus(index) {
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];

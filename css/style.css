@@ -98,3 +98,9 @@ th, td {
 th {
   background: #f3f3f3;
 }
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
