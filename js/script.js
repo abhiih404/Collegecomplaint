@@ -4,16 +4,23 @@ const tableBody = document.querySelector("#complaintsTable tbody");
 function loadComplaints() {
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
   tableBody.innerHTML = "";
+
   complaints.forEach((c, index) => {
     const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${c.name}</td>
-      <td>${c.department}</td>
-      <td>${c.title}</td>
-      <td>${c.description}</td>
-      <td>${c.status}</td>
-      <td><button onclick="toggleStatus(${index})">Toggle</button></td>
-    `;
+
+    [c.name, c.department, c.title, c.description, c.status].forEach((text) => {
+      const cell = document.createElement("td");
+      cell.textContent = text;
+      row.appendChild(cell);
+    });
+
+    const actionCell = document.createElement("td");
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "Toggle";
+    toggleBtn.addEventListener("click", () => toggleStatus(index));
+    actionCell.appendChild(toggleBtn);
+    row.appendChild(actionCell);
+
     tableBody.appendChild(row);
   });
 }
