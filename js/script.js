@@ -5,10 +5,21 @@ function loadComplaints() {
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
   tableBody.innerHTML = "";
 
+  if(complaints.length === 0) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 7;
+    cell.textContent = "No complaints yet";
+    cell.style.textAlign = "center";
+    row.appendChild(cell);
+    tableBody.appendChild(row);
+    return;
+  }
+
   complaints.forEach((c) => {
     const row = document.createElement("tr");
 
-    [c.name, c.department, c.title, c.description, c.status, c.createdAt || "-"].forEach((text) => {      
+    [c.name, c.department, c.title, c.description, c.status, c.createdAt || "-"].forEach((text, i) => {      
       // || "-" this is inorder to handle oder saved complaints without any date
       const cell = document.createElement("td");
       cell.textContent = text;
