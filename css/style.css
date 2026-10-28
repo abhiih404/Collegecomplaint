@@ -107,3 +107,11 @@ th {
 
 .pending {color: #e67e00; font-weight: bold; }
 .pending {color: #1e8e3e; font-weight: bold; }
+
+.table-wrapper { overflow-x: auto;}
+
+td button {
+  display: inline-block;
+  width: auto;
+  margin: 2px;
+}
