@@ -104,3 +104,6 @@ th {
   font-size: 14px;
   margin-top: 5px;
 }
+
+.pending {color: #e67e00; font-weight: bold; }
+.pending {color: #1e8e3e; font-weight: bold; }

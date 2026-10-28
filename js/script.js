@@ -12,6 +12,9 @@ function loadComplaints() {
       // || "-" this is inorder to handle oder saved complaints without any date
       const cell = document.createElement("td");
       cell.textContent = text;
+      if (i === 4) {
+        cell.classList.add(text === "Pending" ? "pending" : "resolved");
+      }
       row.appendChild(cell);
     });
 
