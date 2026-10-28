@@ -5,6 +5,12 @@ function loadComplaints() {
   const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
   tableBody.innerHTML = "";
 
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (loggedInUser) {
+    form.name.defaultValue = loggedInUser;
+    form.name.value = loggedInUser;
+  }
+
   if(complaints.length === 0) {
     const row = document.createElement("tr");
     const cell = document.createElement("td");
