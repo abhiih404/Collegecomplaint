@@ -115,3 +115,10 @@ td button {
   width: auto;
   margin: 2px;
 }
+
+select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin: 8px 0;
+}

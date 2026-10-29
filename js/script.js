@@ -2,7 +2,11 @@ const form = document.getElementById("complaintForm");
 const tableBody = document.querySelector("#complaintsTable tbody");
 
 function loadComplaints() {
-  const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+  const filter = document.getElementById("statusFilter").value;
+  const allcomplaints = JSON.parse(localStorage.getItem("complaints")) || [];
+  const complaints =filter === "All"
+    ?allcomplaints
+    :allcomplaints.filter((c) => c.status === filter);
   tableBody.innerHTML = "";
 
   const loggedInUser = localStorage.getItem("loggedInUser");
@@ -107,5 +111,7 @@ function deleteComplaint(id) {
   localStorage.setItem("complaints", JSON.stringify(updated));
   loadComplaints();
 }
+
+document.getElementById("statusFilter").addEventListener("change", loadComplaints);
 
 window.onload = loadComplaints;
