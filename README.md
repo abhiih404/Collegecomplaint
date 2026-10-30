@@ -2,13 +2,6 @@
 
 A web app where students can register complaints and track whether they are Pending or Resolved.
 
-🔗 **Live demo:** https://abhiih404.github.io/Collegecomplaint/
-
-## Screenshots
-![Login]
-![Complaint form]
-![Complaints table]
-
 ## Features
 - Login page
 - Complaint submission form
@@ -30,9 +23,12 @@ HTML5, CSS3, JavaScript (LocalStorage)
 ## Roadmap
 - [ ] Input validation and edit/delete complaints
 - [ ] Complaint categories and priority
+
+<!--
 - [ ] Backend (Node.js + database) with real authentication
 - [ ] Separate student and admin roles
 - [ ] Admin dashboard with charts
+-->
 
 ## Author
 Built by [Abhijith] · [[GitHub profile link](https://github.com/abhiih404)]
